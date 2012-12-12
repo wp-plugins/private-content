@@ -5,7 +5,7 @@
  * Plugin URI: http://www.aldolat.it/wordpress/wordpress-plugins/private-content/
  * Author: Aldo Latino
  * Author URI: http://www.aldolat.it/
- * Version: 1.0
+ * Version: 1.1
  * License: GPLv3 or later
  * Text Domain: private
  * Domain Path: /languages/
@@ -26,7 +26,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  * @package PrivateContent
- * @version 1.0
+ * @version 1.1
  * @author Aldo Latino <aldolat@gmail.com>, Jeff Starr
  * @copyright Copyright (c) 2009-2012, Aldo Latino
  * @link http://www.aldolat.it/wordpress/wordpress-plugins/private-content/
@@ -64,34 +64,55 @@
 
 function ubn_private_content( $atts, $content = null ) {
 	extract( shortcode_atts( array(
-		'role' => 'administrator' // The default role if none has been provided
+		'role'  => 'administrator', // The default role if none has been provided
+		'align' => ''
 	), $atts ) );
+
+	if( $align != '' ) {
+		switch( $align ) {
+			case 'left' :
+				$align_style = ' style="text-align: left;"';
+			break;
+
+			case 'center' :
+				$align_style = ' style="text-align: center;"';
+			break;
+
+			case 'right' :
+				$align_style = ' style="text-align: right;"';
+			break;
+
+			case 'justify' :
+				$align_style = ' style="text-align: justify;"';
+			break;
+		}
+	}
 
 	switch( $role ) {
 
 		case 'administrator' :
 			if( current_user_can( 'create_users' ) )
-				$text = '<p class="private administrator-content">' . $content . '</p>';
+				$text = '<p class="private administrator-content"' . $align_style . '>' . $content . '</p>';
 		break;
 
 		case 'editor' :
 			if( current_user_can( 'edit_others_posts' ) )
-				$text = '<p class="private editor-content">' . $content . '</p>';
+				$text = '<p class="private editor-content"' . $align_style . '>' . $content . '</p>';
 		break;
 
 		case 'author' :
 			if( current_user_can( 'publish_posts' ) )
-				$text = '<p class="private author-content">' . $content . '</p>';
+				$text = '<p class="private author-content"' . $align_style . '>' . $content . '</p>';
 		break;
 
 		case 'contributor' :
 			if( current_user_can( 'edit_posts' ) )
-				$text = '<p class="private contributor-content">' . $content . '</p>';
+				$text = '<p class="private contributor-content"' . $align_style . '>' . $content . '</p>';
 		break;
 
 		case 'subscriber' :
 			if( current_user_can( 'read' ) )
-				$text = '<p class="private subscriber-content">' . $content . '</p>';
+				$text = '<p class="private subscriber-content"' . $align_style . '>' . $content . '</p>';
 		break;
 
 	}
