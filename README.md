@@ -1,39 +1,39 @@
-=== Private Content ===
-Contributors: aldolat, specialk
-Donate link: http://www.aldolat.it/wordpress/wordpress-plugins/private-content/
-Tags: content, private
-Requires at least: 3.0
-Tested up to: 3.5.1
-Stable tag: 2.0
-License: GPLv3 or later
-License URI: http://www.gnu.org/licenses/gpl-3.0.html
+# Private Content #
+**Contributors:** aldolat, specialk  
+**Donate link:** http://www.aldolat.it/wordpress/wordpress-plugins/private-content/  
+**Tags:** content, private  
+**Requires at least:** 3.0  
+**Tested up to:** 3.5.1  
+**Stable tag:** 2.0  
+**License:** GPLv3 or later  
+**License URI:** http://www.gnu.org/licenses/gpl-3.0.html  
 
 Display private post content only to users of a specific role
 
-== Description ==
+## Description ##
 
 This plugin provides a shortcode to display a portion of a post's content only to users of a specific role.
 
 Usage:
 
 Display this text only to Administrators:<br />
-`[private role="administrator"]Text for Administrators[/private]`
+`[private role="administrator"]Text for administrators[/private]`
 
 Display this text only to Administrators and Editors:<br />
-`[private role="editor"]Text for Editors[/private]`
+`[private role="editor"]Text for editors[/private]`
 
 Display this text only to Administrators, Editors, and Authors:<br />
-`[private role="author"]Text for Authors[/private]`
+`[private role="author"]Text for authors[/private]`
 
 Display this text only to Administrators, Editors, Authors, and Contributors:<br />
-`[private role="contributor"]Text for Contributor[/private]`
+`[private role="contributor"]Text for contributor[/private]`
 
 Display this text only to Administrators, Editors, Authors, Contributors, and Subscribers:<br />
-`[private role="subscriber"]Text for Subscribers[/private]`
+`[private role="subscriber"]Text for subscribers[/private]`
 
 Please, note that an Administrator can read an Editor private content or a Subscriber private content, and so on. Same thing for Editor, Author, Contributor, and Subscriber: a higher role can read a lower role content.
 
-If you want to show a note only to a certain role, you have to use a `<role>-only` option.
+If you want to show a note only to a certain role, you have to use a `<role>-only` option.<br />
 In this way, for example, an Administrator or an Editor (roles higher than Author) can't read a note only for Authors.
 
 Here all the cases:
@@ -45,7 +45,6 @@ Here all the cases:
 `[private role="contributor-only"]Text for Contributors only[/private]`
 
 `[private role="subscriber-only"]Text for Subscribers only[/private]`
-
 
 WordPress roles in descending order:
 
@@ -59,7 +58,7 @@ WordPress roles in descending order:
 
  * Subscriber
 
-== Installation ==
+## Installation ##
 
 This section describes how to install the plugin and get it working.
 
@@ -67,9 +66,9 @@ This section describes how to install the plugin and get it working.
 1. Activate the plugin through the Plugins menu in WordPress
 1. Now the shortcode is available and ready to use.
 
-== Frequently Asked Questions ==
+## Frequently Asked Questions ##
 
-= The hidden text is similar to the public text. Is it possible to stylize it in a different look? =
+### The hidden text is similar to the public text. Is it possible to stylize it in a different look? ###
 
 Yes, you have to edit the CSS file of your current theme.
 The shortcode generates a &lt;p&gt; HTML tag with two classes:
@@ -80,41 +79,45 @@ The shortcode generates a &lt;p&gt; HTML tag with two classes:
 
 A third class is added, in case you make a note only for a specific role, for example "contributor-only".
 
-== Screenshots ==
+## Screenshots ##
 
-1. At the center of the screen, the shortcode is used in the WordPress editor. The text inside the shortcode will be displayed only to Authors and above roles.
-2. The shortcode in action. On the left, the text revealed to Administrators only; on the right, the page as seen by lower roles (Editors, Authors, etc., or simply readers).
+### 1. At the center of the screen, the shortcode is used in the WordPress editor. The text inside the shortcode will be displayed only to Authors and above roles. ###
+![1. At the center of the screen, the shortcode is used in the WordPress editor. The text inside the shortcode will be displayed only to Authors and above roles.](http://s-plugins.wordpress.org/private-content/assets/screenshot-1.png)
 
-== Changelog ==
+### 2. The shortcode in action. On the left, the text revealed to Administrators only; on the right, the page as seen by lower roles (Editors, Authors, etc., or simply readers). ###
+![2. The shortcode in action. On the left, the text revealed to Administrators only; on the right, the page as seen by lower roles (Editors, Authors, etc., or simply readers).](http://s-plugins.wordpress.org/private-content/assets/screenshot-2.png)
 
-= 2.0 =
+
+## Changelog ##
+
+### 2.0 ###
 
 * NEW: now you can show a note only to user of a specific role, hiding that note to higher roles.
 * Added uninstall.php to delete the new custom capabilities.
 
-= 1.2 =
+### 1.2 ###
 
 * Now the inline style appears only if necessary.
 
-= 1.1 =
+### 1.1 ###
 
 * Upon request, added the possibility to align the text left, right, centered and justified.
 
-= 1.0 =
+### 1.0 ###
 
 * First release of the plugin.
 
-== Upgrade Notice ==
+## Upgrade Notice ##
 
-= 2.0 =
+### 2.0 ###
 
 Upgrade in order to use the new role-only feature.
 
-= 1.0 =
+### 1.0 ###
 
 No upgrade notice.
 
-== Credits ==
+## Credits ##
 
 Many thanks to:
 
