@@ -52,6 +52,7 @@
  * [private role="contributor" align="right"]Text for contributors[/private]
  * [private role="subscriber" align="justify"]Text for subscribers[/private]
  * [private role="subscriber-only" align="justify"]Text for subscribers only[/private]
+ * [private role="visitor-only"]Text for visitors only[/private]
  *
  * Please, note that an administrator can read an editor private content or a subscriber private content, and so on.
  * Same thing for editor, author, contributor, and subscriber: a higher role can read a lower role content.
@@ -75,11 +76,14 @@
  * Note that the Administrator role doesn't need any custom capabilities.
  */
 function ubn_private_add_cap() {
+
 	global $wp_roles;
+
 	$wp_roles->add_cap( 'editor',      'read_ubn_editor_notes'      );
 	$wp_roles->add_cap( 'author',      'read_ubn_author_notes'      );
 	$wp_roles->add_cap( 'contributor', 'read_ubn_contributor_notes' );
 	$wp_roles->add_cap( 'subscriber',  'read_ubn_subscriber_notes'  );
+
 }
 register_activation_hook( __FILE__, 'ubn_private_add_cap' );
 
@@ -90,10 +94,13 @@ register_activation_hook( __FILE__, 'ubn_private_add_cap' );
  * This function will be removed in future.
  */
 function ubn_private_check_capability_exists() {
+
 	$editor_role = get_role( 'editor' );
+
 	if ( ! isset( $editor_role->capabilities['read_ubn_editor_notes'] ) ) {
 		ubn_private_add_cap();
 	}
+
 }
 add_action( 'init', 'ubn_private_check_capability_exists' );
 
@@ -104,11 +111,15 @@ add_action( 'init', 'ubn_private_check_capability_exists' );
  * @usage [private role="role" align="align"]Text to show[/private]
  */
 function ubn_private_content( $atts, $content = null ) {
-	extract( shortcode_atts( array(
-				'role'  => 'administrator', // The default role if none has been provided
-				'align' => ''
-			), $atts ) );
 
+	$defaults = array(
+		'role'  => 'administrator', // The default role if none has been provided
+		'align' => '',
+	);
+
+	extract( shortcode_atts( $defaults, $atts ) );
+
+	// The 'align' option
 	if ( $align != '' ) {
 		switch ( $align ) {
 		case 'left' :
@@ -134,6 +145,7 @@ function ubn_private_content( $atts, $content = null ) {
 		$align_style = '';
 	}
 
+	// The 'role' option
 	switch ( $role ) {
 
 	case 'administrator' :
