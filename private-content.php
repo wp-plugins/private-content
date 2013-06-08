@@ -5,7 +5,7 @@
  * Plugin URI: http://dev.aldolat.it/projects/private-content/
  * Author: Aldo Latino
  * Author URI: http://www.aldolat.it/
- * Version: 2.1
+ * Version: 2.2
  * License: GPLv3 or later
  * Text Domain: private
  * Domain Path: /languages/
@@ -62,6 +62,9 @@
  * [private role="author-only"]Text for authors only[/private]
  * In this way, Administrators and Editors (roles higher than Editors) can't read this note.
  *
+ * If you want to show an alternate text in case the user can't read, you can use `alt` option:
+ * [private role="author" alt="You have not rights to read this."]Text for authors only[/private]
+ *
  * WordPress Roles in descending order:
  * Administrator,
  * Editor,
@@ -115,6 +118,7 @@ function ubn_private_content( $atts, $content = null ) {
 	$defaults = array(
 		'role'  => 'administrator', // The default role if none has been provided
 		'align' => '',
+		'alt'   => '',
 	);
 
 	extract( shortcode_atts( $defaults, $atts ) );
@@ -149,53 +153,103 @@ function ubn_private_content( $atts, $content = null ) {
 	switch ( $role ) {
 
 	case 'administrator' :
-		if ( current_user_can( 'create_users' ) )
+		if ( current_user_can( 'create_users' ) ) {
 			$text = '<p class="private administrator-content"' . $align_style . '>' . $content . '</p>';
+		} else {
+			if ( $alt ) {
+				$text = '<p class="private administrator-content alt-text">' . $alt . '</p>';
+			}
+		}
 		break;
 
 	case 'editor' :
-		if ( current_user_can( 'edit_others_posts' ) )
+		if ( current_user_can( 'edit_others_posts' ) ) {
 			$text = '<p class="private editor-content"' . $align_style . '>' . $content . '</p>';
+		} else {
+			if ( $alt ) {
+				$text = '<p class="private editor-content alt-text">' . $alt . '</p>';
+			}
+		}
 		break;
 
 	case 'editor-only' :
-		if ( current_user_can( 'read_ubn_editor_notes' ) )
+		if ( current_user_can( 'read_ubn_editor_notes' ) ) {
 			$text = '<p class="private editor-content editor-only"' . $align_style . '>' . $content . '</p>';
+		} else {
+			if ( $alt ) {
+				$text = '<p class="private editor-content alt-text">' . $alt . '</p>';
+			}
+		}
 		break;
 
 	case 'author' :
-		if ( current_user_can( 'publish_posts' ) )
+		if ( current_user_can( 'publish_posts' ) ) {
 			$text = '<p class="private author-content"' . $align_style . '>' . $content . '</p>';
+		} else {
+			if ( $alt ) {
+				$text = '<p class="private author-content alt-text">' . $alt . '</p>';
+			}
+		}
 		break;
 
 	case 'author-only' :
-		if ( current_user_can( 'read_ubn_author_notes' ) )
+		if ( current_user_can( 'read_ubn_author_notes' ) ) {
 			$text = '<p class="private author-content author-only"' . $align_style . '>' . $content . '</p>';
+		} else {
+			if ( $alt ) {
+				$text = '<p class="private author-content alt-text">' . $alt . '</p>';
+			}
+		}
 		break;
 
 	case 'contributor' :
-		if ( current_user_can( 'edit_posts' ) )
+		if ( current_user_can( 'edit_posts' ) ) {
 			$text = '<p class="private contributor-content"' . $align_style . '>' . $content . '</p>';
+		} else {
+			if ( $alt ) {
+				$text = '<p class="private contributor-content alt-text">' . $alt . '</p>';
+			}
+		}
 		break;
 
 	case 'contributor-only' :
-		if ( current_user_can( 'read_ubn_contributor_notes' ) )
+		if ( current_user_can( 'read_ubn_contributor_notes' ) ) {
 			$text = '<p class="private contributor-content contributor-only"' . $align_style . '>' . $content . '</p>';
+		} else {
+			if ( $alt ) {
+				$text = '<p class="private contributor-content alt-text">' . $alt . '</p>';
+			}
+		}
 		break;
 
 	case 'subscriber' :
-		if ( current_user_can( 'read' ) )
+		if ( current_user_can( 'read' ) ) {
 			$text = '<p class="private subscriber-content"' . $align_style . '>' . $content . '</p>';
+		} else {
+			if ( $alt ) {
+				$text = '<p class="private subscriber-content alt-text">' . $alt . '</p>';
+			}
+		}
 		break;
 
 	case 'subscriber-only' :
-		if ( current_user_can( 'read_ubn_subscriber_notes' ) )
+		if ( current_user_can( 'read_ubn_subscriber_notes' ) ) {
 			$text = '<p class="private subscriber-content subscriber-only"' . $align_style . '>' . $content . '</p>';
+		} else {
+			if ( $alt ) {
+				$text = '<p class="private subscriber-content alt-text">' . $alt . '</p>';
+			}
+		}
 		break;
 
 	case 'visitor-only' :
-		if ( ! is_user_logged_in() )
+		if ( ! is_user_logged_in() ) {
 			$text = '<p class="private visitor-content visitor-only"' . $align_style . '>' . $content . '</p>';
+		} else {
+			if ( $alt ) {
+				$text = '<p class="private visitor-content alt-text">' . $alt . '</p>';
+			}
+		}
 		break;
 
 	default :
