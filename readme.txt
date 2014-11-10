@@ -105,6 +105,10 @@ The shortcode generates a `<p>` HTML tag with at most three classes in this orde
 * `[role]-content` to stylize the content for that specific [role].
 * `[role]-content-only` to stylize the content for that specific [role] only.
 
+= Does this plugin work with custom roles? =
+
+Yes. To map the capabilities to the custom role, use a plugin like [Members](https://wordpress.org/plugins/members) or [Capability Manager Enhanced](https://wordpress.org/plugins/capability-manager-enhanced).
+
 == Screenshots ==
 
 1. At the center of the screen, the shortcode is used in the WordPress editor. The text inside the shortcode will be displayed only to Authors and above roles.
