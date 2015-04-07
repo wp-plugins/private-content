@@ -1,10 +1,10 @@
 # Private Content #
-**Contributors:** aldolat, specialk  
+**Contributors:** aldolat, specialk, thewanderingbrit  
 **Donate link:** http://dev.aldolat.it/projects/private-content/  
 **Tags:** content, private  
 **Requires at least:** 3.0  
-**Tested up to:** 4.1  
-**Stable tag:** 2.4  
+**Tested up to:** 4.2  
+**Stable tag:** 2.5  
 **License:** GPLv3 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-3.0.html  
 
@@ -62,11 +62,13 @@ If you want to show an alternate text in case the reader can't read, you can use
 Starting from version 2.4, the user can choose the container element for the text:
 
 * `p` is the default value;
-* `div` is the other option. This element lets you use HTML elements like lists, headings, and more.
+* `div` is another option. This element lets you use HTML elements like lists, headings, and more.
+* `span` is the final option. This element allows you to add private content inline.
 
 Usage:
 
 `[private container="div"]This is the text[/private]`
+`I met with a friend[private container="span"] (Jenny, from ninth grade)[/private] for lunch.`
 
 ### Standard WordPress user roles ###
 
@@ -112,13 +114,18 @@ Yes. To map the capabilities to the custom role, use a plugin like [Members](htt
 ## Screenshots ##
 
 ### 1. At the center of the screen, the shortcode is used in the WordPress editor. The text inside the shortcode will be displayed only to Authors and above roles. ###
-![1. At the center of the screen, the shortcode is used in the WordPress editor. The text inside the shortcode will be displayed only to Authors and above roles.](https://ps.w.org/private-content/assets/screenshot-1.png)
+![1. At the center of the screen, the shortcode is used in the WordPress editor. The text inside the shortcode will be displayed only to Authors and above roles.](http://ps.w.org/private-content/assets/screenshot-1.png)
 
 ### 2. The shortcode in action. On the left, the text revealed to Administrators only; on the right, the page as seen by lower roles (Editors, Authors, etc., or simply readers). ###
-![2. The shortcode in action. On the left, the text revealed to Administrators only; on the right, the page as seen by lower roles (Editors, Authors, etc., or simply readers).](https://ps.w.org/private-content/assets/screenshot-2.png)
+![2. The shortcode in action. On the left, the text revealed to Administrators only; on the right, the page as seen by lower roles (Editors, Authors, etc., or simply readers).](http://ps.w.org/private-content/assets/screenshot-2.png)
 
 
 ## Changelog ##
+
+### 2.5 ###
+
+* NEW: Added ability to use "span" as a container.
+* FIX: Removed shortcode execution in feed.
 
 ### 2.4 ###
 
@@ -159,6 +166,10 @@ Yes. To map the capabilities to the custom role, use a plugin like [Members](htt
 ### 2.0 ###
 
 Upgrade in order to use the new role-only feature.
+
+### 2.5 ###
+
+Removed shortcode execution in feed.
 
 ### 1.0 ###
 
